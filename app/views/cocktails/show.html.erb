@@ -1,11 +1,24 @@
 <h3><%= @cocktail.name %></h3>
+
+<hr>
+
 <h4>The secret recipe:</h4>
-<% @cocktail.doses.each do |dose| %>
-  <p><%= dose.description %> of <%= dose.ingredient.name %></p>
-  <%= link_to "Delete this ingredient", dose_path(dose), method: :delete %>
+
+<% if @cocktail.doses.empty? %>
+  <%= "(No ingredients)" %>
+<% else %>
+  <% @cocktail.doses.each do |dose| %>
+    <p><%= dose.description %> of <%= dose.ingredient.name %></p>
+    <%= link_to "Delete this ingredient", dose_path(dose), method: :delete %>
+  <% end %>
 <% end %>
+
+<br>
+
 <h4>Add an ingredient:</h4>
-<%= render 'doses/form', cocktail: @cocktail, dose: Dose.new %>
+<%= render 'doses/form', cocktail: @cocktail, dose: @dose %>
+
+<br>
 
 <%= link_to "View all cocktails", cocktails_path, class: "btn btn-primary"%>
 

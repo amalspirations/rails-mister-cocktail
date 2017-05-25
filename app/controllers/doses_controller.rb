@@ -1,7 +1,4 @@
 class DosesController < ApplicationController
-  def new
-    @dose = Dose.new
-  end
 
   def create
     @dose = Dose.new(dose_params)
@@ -11,7 +8,6 @@ class DosesController < ApplicationController
     else
       render :new
     end
-
   end
 
   def destroy
