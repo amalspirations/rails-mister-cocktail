@@ -1,5 +1,9 @@
-<%= simple_form_for [cocktail, dose] do |f| %>
-  <%= f.input :ingredient_id, collection: Ingredient.all %>
-  <%= f.input :description, label: "Provide a dose" %>
-  <%= f.submit class: 'btn btn-success' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <%= simple_form_for [cocktail, dose] do |f| %>
+      <div class="col-xs-12 col-sm-6"><%= f.input :ingredient_id, collection: Ingredient.all %></div>
+      <div class="col-xs-12 col-sm-6"><%= f.input :description, label: "Provide a dose" %></div>
+      <div class="col-xs-12 col-sm-6"><%= f.submit "Add ingredient", class: 'btn btn-success' %></div>
+    <% end %>
+  </div>
+</div>
