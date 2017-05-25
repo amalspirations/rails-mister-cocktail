@@ -1,25 +1,63 @@
-<h3><%= @cocktail.name %></h3>
+<div class="container">
 
-<hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3><%= @cocktail.name %></h3>
+    </div>
+  </div>
 
-<h4>The secret recipe:</h4>
+  <hr>
 
-<% if @cocktail.doses.empty? %>
-  <%= "(No ingredients)" %>
-<% else %>
-  <% @cocktail.doses.each do |dose| %>
-    <p><%= dose.description %> of <%= dose.ingredient.name %></p>
-    <%= link_to "Delete this ingredient", dose_path(dose), method: :delete %>
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>The secret recipe:</h4>
+    </div>
+  </div>
+
+  <br>
+
+  <% if @cocktail.doses.empty? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= "(No ingredients)" %>
+      </div>
+    </div>
+  <% else %>
+
+    <% @cocktail.doses.each do |dose| %>
+      <div class="row">
+        <div class="col-xs-9">
+          <ul>
+            <li><em><%= dose.description %> of <%= dose.ingredient.name %></em></li>
+          </ul>
+        </div>
+        <div class="col-xs-3">
+          <%= link_to "Delete this ingredient", dose_path(dose), method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+
   <% end %>
-<% end %>
+  <br>
 
-<br>
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Add an ingredient:</h4>
+    </div>
+  </div>
+  <div class="row">
+      <%= render 'doses/form', cocktail: @cocktail, dose: @dose %>
+  </div>
 
-<h4>Add an ingredient:</h4>
-<%= render 'doses/form', cocktail: @cocktail, dose: @dose %>
+  <hr>
+   <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "View all cocktails", cocktails_path, class: "btn btn-primary"%>
+    </div>
+  </div>
 
-<br>
+</div>
 
-<%= link_to "View all cocktails", cocktails_path, class: "btn btn-primary"%>
 
 
