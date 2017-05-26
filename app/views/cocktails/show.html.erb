@@ -8,10 +8,31 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <% if @product.photo? %>
-        <%= cl_image_tag @product.photo.path, width: 200, height: 300, crop: :fill %>
+      <% if @cocktail.photos? %>
+
+        <% @cocktail.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+
       <% end %>
     </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-xs-4">
+      <% average_rating = @cocktail.reviews.reduce(0){|sum, r| sum + r.rating} / @cocktail.reviews.length.to_f %>
+      <% 1.upto(5) do |i| %>
+        <% if i <= average_rating %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% elsif (i-1..i).include? average_rating  %>
+          <i class="fa fa-star-half-o" aria-hidden="true"></i>
+        <% else %>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+       <% end %>
+      <% end %>
+    </div>
+
   </div>
 
   <div class="row">
@@ -54,6 +75,43 @@
   </div>
   <div class="row">
       <%= render 'doses/form', cocktail: @cocktail, dose: @dose %>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>(<%= @cocktail.reviews.length %> reviews)</h4>
+    </div>
+  </div>
+
+  <% @cocktail.reviews.each do |review| %>
+    <div class="row">
+
+      <div class="col-xs-4">
+        <% 1.upto(5) do |i| %>
+          <% if i <= review.rating %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          <% else %>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+         <% end %>
+       <% end %>
+      </div>
+
+      <div class="col-xs-8">
+        <p><em><%= review.content %></em></p>
+      </div>
+    </div>
+  <% end %>
+
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h4>Leave a review</h4>
+      <%  %>
+      <%= render 'reviews/form', cocktail: @cocktail, review: @review %>
+    </div>
   </div>
 
   <hr>

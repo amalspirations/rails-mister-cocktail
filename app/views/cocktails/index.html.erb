@@ -1,29 +1,45 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
 
     <% @cocktails.each do |cocktail| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+      <%= link_to cocktail_path(cocktail) do %>
 
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path @product.photo.path, height: 300, width: 400, crop: :fill %>')">
-        <div class="card-description">
-          <h2><%= cocktail.name %></h2>
-          <p><%= link_to "Secret recipe", cocktail_path(cocktail) %></p>
+         url('<%= cl_image_path cocktail.photos? ? cocktail.photos.first.path : 'yf5lx4xtb7jil3tr2eig', height: 300, width: 400, crop: :fill %>')">
+
+        <div class="card-category">
+          <% average_rating = cocktail.reviews.reduce(0){|sum, r| sum + r.rating} / cocktail.reviews.length.to_f %>
+          <% 1.upto(5) do |i| %>
+            <% if i <= average_rating %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <% elsif (i-1..i).include? average_rating  %>
+              <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <% else %>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+           <% end %>
+          <% end %>
+          <p><em>(<%= cocktail.reviews.length %> reviews)</em></p>
         </div>
+
+
+
+        <div class="card-description">
+          <h2><%= cocktail.name.upcase %></h2>
+          <p><em>Made with <strong>love</strong> and <strong><%= cocktail.ingredients.empty? ? "mystery" : cocktail.ingredients.first.name.downcase  %></em></strong></p>
+        </div>
+
       </div>
 
+      <% end %>
+
+    </div>
     <% end %>
 
-    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <%= link_to "Add cocktail", new_cocktail_path, class: "btn-medium" %>
-    </div>
-  </div>
-</div>
+
 

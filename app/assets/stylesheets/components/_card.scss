@@ -4,6 +4,8 @@
   background-size: cover !important;
   color: white;
   position: relative;
+  border-radius: 5px;
+  margin: 10px auto;
 }
 .card-user {
   position: absolute;
@@ -15,8 +17,9 @@
   top: 10px;
   left: 10px;
   font-size: 10px;
-  text-transform: uppercase;
+  color: #E2007A;
 }
+
 .card-description {
   position: absolute;
   bottom: 10px;
