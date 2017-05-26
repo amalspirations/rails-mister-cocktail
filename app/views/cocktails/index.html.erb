@@ -1,8 +1,29 @@
-<% @cocktails.each do |cocktail| %>
-  <%= cocktail.name %>
-  <%= link_to "Secret recipe", cocktail_path(cocktail) %>
-<% end %>
 
-<%= link_to "Add cocktail", new_cocktail_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
 
+    <% @cocktails.each do |cocktail| %>
+
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_tag("lujumm0stnpuajk4qkgs",
+      width: 500, height: 500, crop: :fill) %>');">
+        <div class="card-description">
+          <h2><%= cocktail.name %></h2>
+          <p><%= link_to "Secret recipe", cocktail_path(cocktail) %></p>
+        </div>
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "Add cocktail", new_cocktail_path, class: "btn-medium" %>
+    </div>
+  </div>
+</div>
 
