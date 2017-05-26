@@ -4,6 +4,11 @@
  * Feel free to change them and create your own
  * ------------------------------------- */
 
+// Cocktail colors
+$red: #BE0A26;
+$pink: #E2007A;
+$grey: #ECEDED;
+
 // Paddings
 .padded {
   padding-top: 3em;
@@ -26,10 +31,10 @@
 
 body {
   background-color: black;
-  color: #ECEDED;
+  color: $grey;
 }
 
 .fa {
-  color: #E2007A;
+  color: $pink;
 }
 

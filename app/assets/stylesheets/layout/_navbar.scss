@@ -4,8 +4,8 @@
   background: black;
   transition: all 0.3s ease;
   display: flex;
-  height: 70px;
-  padding: 0px 30px;
+  height: 10vh;
+  padding: 0px 5px;
   align-items: center;
   justify-content: space-between;
 }
@@ -20,8 +20,14 @@
 }
 
 /* Navbar logo */
-.navbar-brand img {
-  width: 50px;
+.navbar-brand {
+  margin: 0 0;
+  padding: 0 0;
+  float: left;
+  img {
+    height: 8vh;
+    vertical-align: middle;
+  }
 }
 
 /* Navbar right section (with form, links, button) */
@@ -48,22 +54,7 @@
   text-decoration: none;
 }
 
-/* Navbar right button */
-.navbar-button {
-  margin-left: 10px;
-  padding: 0 20px;
-  border-radius: 20em;
-  line-height: 40px;
-  background-color: #D23333;
-  color: white;
-  font-size: 14px;
-  border: 2px solid #D23333;
-}
-.navbar-button:hover {
-  color: white;
-  background: #D23333;
-  border-color: #ac2626;
-}
+
 
 /* Navbar search form */
 .navbar-search {
